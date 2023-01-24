@@ -189,8 +189,6 @@ int main() { //where the program begins
     //fix: std::ws eliminates any white space or blank lines before user input, ws stands for white space
     std::getline(std::cin >> std::ws, fullInputName);  //getline command gets a line from somewhere and puts it in something
     std::cout << "YOUR FULL LEGAL NAME IS " << fullInputName << '\n';
-    char[20] hello = "Joeee biden";
-    cout << hello;
 
 
 
