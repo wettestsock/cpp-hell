@@ -14,8 +14,7 @@ long nCr(int n,int k)
     long ans=1;
     k=k>n-k?n-k:k;
     int j=1;
-    for(;j<=k;j++,n--)
-    {
+    for(;j<=k;j++,n--) //hiiiii
         if(n%j==0)
         {
             ans*=n/j;
