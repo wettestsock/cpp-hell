@@ -10,7 +10,7 @@ char& n = newLine;
 //defines nCr (combinations)
 //calculates to ginormous numbers so a long is used
 long nCr(int n,int k)
-{
+{ //hi this is a test
     long ans=1;
     k=k>n-k?n-k:k;
     int j=1;
