@@ -47,7 +47,7 @@ void hypothenuse::data() {
     *xValue = -2;
     int *charPtr = new int;
         *charPtr = 0;
-    do{
+    do{ //fkdlglkdgkjt
     for(int i=0; i < 3; i++) {
         cout<< "Enter " << abc[i] << n;
         string value;
