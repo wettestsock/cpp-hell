@@ -9,13 +9,11 @@ char& n = newLine;
 
 //defines nCr (combinations)
 //calculates to ginormous numbers so a long is used
-long nCr(int n,int k)
-{ //hi this is a test
-//hi back test
+long nCr(int n,int k) { 
     long ans=1;
     k=k>n-k?n-k:k;
     int j=1;
-    for(;j<=k;j++,n--) //hiiiii
+    for(;j<=k;j++,n--) {
         if(n%j==0)
         {
             ans*=n/j;
@@ -29,7 +27,7 @@ long nCr(int n,int k)
         }
     }
     return ans;
-}
+};
 
 //connects everything together
 class bootup {
@@ -78,13 +76,14 @@ string bootup::position(int& length) {
     double len = length;
     int digits = log10(len) + 1;
     char spaceOutput[digits];
-    for(int x = 0; x < length; i++) {
-        spaceOutput[x] = 'g';
+    for(int x = 0; x < length; x++) {
+        spaceOutput[x] = ' ';
     };
+    return "";
 };
 
 void bootup::pascals(int& length) {
-    cout << position(length);
+    
     cout << "----------" << n << n;
     cout << 1 << n;
     for(int z = 1; z < length +1; z++) { //each row
@@ -105,18 +104,7 @@ int main() {
     // Write C++ code here
     bootup output;
     return 0;
-    
-    /* backup
-        cout << length << n;
-    cout << 1 << n;
-    for(int z = 1; z < 8; z++) { //each row
-    cout << 1; 
-    for(int i = 1; i < z; i++) { //each letter
-        cout << " " << nCr((z-1), i) + nCr((z-1),(i-1));
-    };
-    cout << " " << 1 << '\n';
-    };
-    */
+
 }
 
 

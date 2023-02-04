@@ -40,6 +40,5 @@ int main() {
     cout << "the super duper mega cool buffer issss " << superCoolBuffer << n;
     delete[] superCoolBuffer;
 
-    char swag = new char[];
 
 };
