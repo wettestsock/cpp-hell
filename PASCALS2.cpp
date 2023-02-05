@@ -28,16 +28,16 @@ long nCr(int n,int k) {
 };
 
 string position(const int& nor, const int& inv) {
-    string* p = new string;
+    string p;
 
     if (nor > 10 && nor < 14) {
-        *p = "th";
+        p = "th";
     } else {
     switch(nor % 10) {
-        case 1: *p= "st"; break;
-        case 2: *p= "nd"; break;
-        case 3: *p= "rd"; break;
-        default: *p = "th";
+        case 1: p= "st"; break;
+        case 2: p= "nd"; break;
+        case 3: p= "rd"; break;
+        default: p= "th";
     };
     };
 
@@ -47,8 +47,8 @@ string position(const int& nor, const int& inv) {
     };
 
     string s(space.begin(), space.end());
-    return to_string(nor) + *p + " position " + s + "---> ";
-
+    return to_string(nor) + p + " position " + s + "---> ";
+    
 };
 
 //connects everything together
