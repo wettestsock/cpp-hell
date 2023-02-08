@@ -2,6 +2,8 @@
 #include <cmath> //includes a set of math instructions for c++, excluding the max and min operators
 //using namespace std; is used to define the default namespace within the function, not good
 //picks variables from a huge list, can overlap
+#include <vector>
+#include <array>
 
 using text_t = std::string; //using, better than typedef, puts something here to declutter the code
 //note: _t is usually put to declare an alias or synonym
@@ -160,35 +162,12 @@ int main() { //where the program begins
         //continue; <----- continues the loop
     };
 
+    std::vector<int> lol = {1,2,3,4,5,6};
+    for(const int& n : lol) {
+        std::cout << n << '\t';
+    }
+    
 
-
-
-
-    text_t bombInstructions;
-    std::cout << "enter yo bomb making instructions " << '\n';
-    std::getline(std::cin >> std::ws, bombInstructions);
-
-    bombInstructions.append(" in minecraft"); //can be anything, including a variable
-    std::cout << "your bomb making instructions are " << bombInstructions << '\n';
-
-
-       //USER INPUT 
-
-    text_t fullInputName;
-    text_t fullInputAddress;
-    //instead of cout, use cin 
-    std::cout << "whats your grade and home address ";
-    std::cin >> grade >> fullInputAddress; //std cin stores input in a variable
-    //note: can be put multiple items, separated by a space, where it inputs grade first and then fullInputAddresss
-    //BUT cant store anything with space
-    std::cout << "your grade is an " << grade << '\n' << "and you live on " << fullInputAddress; 
-
-    //FIX:
-    std::cout << "WHATS YOUR FULL LEGAL NAME AND CREDIT CARD NUMBER";
-    //PROBLEM ::: PUTTING CIN BEFORE GETLINE MESSES UP THE ORDER
-    //fix: std::ws eliminates any white space or blank lines before user input, ws stands for white space
-    std::getline(std::cin >> std::ws, fullInputName);  //getline command gets a line from somewhere and puts it in something
-    std::cout << "YOUR FULL LEGAL NAME IS " << fullInputName << '\n';
 
 
 
