@@ -6,6 +6,7 @@
 #include <cstring>
 using std::cin, std::cout, std::string, std::fill_n, std::stod, std::isnan, std::round;
 char n = '\n';
+//fihjdkfhj
 
 class hypothenuse {
     public:

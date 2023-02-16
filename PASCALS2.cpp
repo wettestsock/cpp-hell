@@ -7,6 +7,7 @@ using std::cout, std:: cin, std::string, std::strcpy, std::to_string, std::vecto
 
 const char& n = '\n';
 const string& dash = "----------";
+//fjhskfhrfrkgmedkjgvjhg
 
 
 //defines nCr (combinations)
