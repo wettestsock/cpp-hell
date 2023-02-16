@@ -8,7 +8,7 @@ using std::cout; using std::cin; using std::string; using std::strcpy; using std
 const char& n = '\n';
 const string& dash = "----------";
 //fjhskfhrfrkgmedkjgvjhg
-
+//kjgkfldj
 
 //defines nCr (combinations)
 //calculates to ginormous numbers so a long is used
@@ -16,7 +16,7 @@ long nCr(int n,int k) {
     long ans=1;
     k=k>n-k?n-k:k;
     int j=1;
-    for(;j<=k;j++,n--) { //hiiiii
+    for(;j<=k;j++,n--) { 
         if(n%j==0) {
             ans*=n/j;
         }else if(ans%j==0) {
@@ -81,7 +81,7 @@ void intCheck(){
 void pascals(const int& length) {
     cout << dash << n << n << position(0, length+1) << 1 << n;
 
-    for(int z = 1, inv = length; z < length+1, inv > 0; z++, inv--) { //each row
+    for (int z = 1, inv = length; length + 1 > z, inv > 0; z++, inv--) { //each row
         cout << position(z, inv);
         cout << 1; 
         for(int i = 1; i < z; i++) { //each #

@@ -1,13 +1,10 @@
-﻿  HYPOTHENUSE.cpp
-  PASCALS2.cpp
-  instantiate.cpp
+﻿  instantiate.cpp
 C:\Users\evils\Desktop\coding\cpp-hell\practice\instantiate.cpp(12,20): error C2065: 'endl': undeclared identifier
 C:\Users\evils\Desktop\coding\cpp-hell\practice\instantiate.cpp(16,8): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
   member_intializer.cpp
 C:\Users\evils\Desktop\coding\cpp-hell\practice\member_intializer.cpp(25,8): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
   pointers.cpp
 C:\Users\evils\Desktop\coding\cpp-hell\practice\pointers.cpp(4,1): error C7529: multiple using-declarators require at least '/std:c++17'
-  struct.cpp
   tempCodeRunnerFile.cpp
 C:\Users\evils\Desktop\coding\cpp-hell\practice\tempCodeRunnerFile.cpp(3,1): error C2059: syntax error: '}'
 C:\Users\evils\Desktop\coding\cpp-hell\practice\tempCodeRunnerFile.cpp(3,1): error C2143: syntax error: missing ';' before '}'
