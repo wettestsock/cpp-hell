@@ -1,10 +1,11 @@
 //FOOLPROOF !!! super duper hypothenuse calculator!!
-
+/*
+* 
+* //fill fix this garbage later, maybe make ver 2
 #include <iostream> 
 #include <cmath>
-#include <cctype>
 #include <cstring>
-using std::cin, std::cout, std::string, std::fill_n, std::stod, std::isnan, std::round;
+using std::cin; using std::cout; using std::string; using std::fill_n; using  std::isnan; using std::round;
 char n = '\n';
 //fihjdkfhj
 
@@ -53,7 +54,7 @@ void hypothenuse::data() {
         cout<< "Enter " << abc[i] << n;
         string value;
         cin>>value;
-        char arr[value.length() + 1];
+        char arr[const value.length() + 1];
         strcpy(arr, value.c_str()); // to, from. c_str() to specify it's string
 
         for(int a=0; a<value.length(); a++) { //note: no +1 because the last is automatically a NULL
@@ -61,7 +62,7 @@ void hypothenuse::data() {
         };
         
         if (*charPtr < 1) { //checks it the value isnt a double
-            number[i] = stod(value);
+            number[i] = std::stod(value);
             *charPtr = 0;
         } else if (*charPtr > 1) {
             cout<<"dont you dare type a string!! type again!!" << n << n;
@@ -107,3 +108,4 @@ void hypothenuse::data() {
 int main() {
     hypothenuse output;
 }
+*/

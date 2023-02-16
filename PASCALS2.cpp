@@ -3,7 +3,7 @@
 #include <cmath>
 #include <string>
 #include <vector>
-using std::cout, std::cin, std::string, std::strcpy, std::to_string, std::vector;
+using std::cout; using std::cin; using std::string; using std::strcpy; using std::to_string; using std::vector;
 
 const char& n = '\n';
 const string& dash = "----------";
@@ -26,7 +26,7 @@ long nCr(int n,int k) {
         }
     }
     return ans;
-};
+}; 
 
 string position(const int& nor, const int& inv) {
     string p;
