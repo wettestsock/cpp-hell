@@ -1,9 +1,9 @@
 #include <iostream> //made by me and me only (i have no idea what im doing)
 #include <iomanip>
 #include <cmath>
-#include <cstring>
+#include <string>
 #include <vector>
-using std::cout, std:: cin, std::string, std::strcpy, std::to_string, std::vector;
+using std::cout, std::cin, std::string, std::strcpy, std::to_string, std::vector;
 
 const char& n = '\n';
 const string& dash = "----------";
