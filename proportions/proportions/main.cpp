@@ -1,14 +1,14 @@
-// Online C++ compiler to run C++ program online
+
 #include <iostream>
-#include <string>
 #include <vector>
-const char& n = '\n';
-const char& t = '\t';
+#include <string>
+#include <numeric>
+#include <cmath>
+
+const char& n = '\n', t = '\t';
 
 class proportions {
 public:
-    std::vector<double> sales;
-    std::string hii = "4.6";
 
     proportions() {
         std::cout << "Proportion calculator!!" << n << t << "------------"
@@ -18,50 +18,54 @@ public:
 
 
     void dataInput() {
+        std::vector<double> values;
         std::string input;
-        double total = 0.0;
         bool c = 1;
+
         while (c == 1) {
             std::cout << "| ";
             std::cin >> input;
             if (input == "done") {
-                std::cout << "done"; c = 0;
-            }
-            else if (isNum(input)) {
-                sales.push_back(stod(input));
-                total += stod(input);
-                std::cout << '>' << t << "Value " << sales.size() << " set!" << n;
-            }
-            else {
+                c = 0;
+            } else if (isNum(input)) {
+                values.push_back(stod(input));
+                std::cout << '>' << t << "Value " << values.size() << " set!" << n;
+            } else {
                 std::cout << '>' << t << "STOP MESSING WITH ME!!! THATS MEAN" << n;
             }
-        }
+        };
+
+        const double& total = std::accumulate(values.begin(), values.end(), 0);
+
+        
+        for (int i = 0; i < values.size(); i++) {
+                std::cout << "The p of " << values[i] << " (Value " << i+1  << ") is " << std::ceil((values[i] / total) * 1000) / 1000 << t;
+                if (i % 2 != 0) { std::cout << n; };
+        };
+
+        
+
+
     };
 
-            bool isNum(std::string& s) {
-            for (char& ch : s) {
-                if (!isdigit(ch) && ch != '.') {
-                    return false;
-                }
+    const bool isNum(std::string& s) {
+        for (const char& ch : s) {
+            if (!isdigit(ch) && ch != '.') {
+                return false;
             }
-            return true;
         };
+        return true;
+    };
+         
 };
 
 
 
 int main() {
     proportions hi;
-    /*for(int i: sales) {
+    /*for(int i: values) {
         count++;
         std::cout << "value #" << count << " set!" << n; */
     std::cin.get();
     return 0;
 }
-
-
-
-
-
-
-

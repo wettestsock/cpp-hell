@@ -21,7 +21,7 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{96e21476-4668-46d5-a9ea-ccf6fc6ddd7e}</ProjectGuid>
+    <ProjectGuid>{f0a9e375-0b84-4893-be9d-5e5c65833252}</ProjectGuid>
     <RootNamespace>proportions</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
