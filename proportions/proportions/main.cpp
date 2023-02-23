@@ -113,7 +113,7 @@ int main()
     //inputs mean, sd, and number of times to ooutput
     nNum lol(10, 2, 100);
     
-    //note: the higher the sd, the more the values will value
+    //note: the higher the sd, the more the values will vary.
     std::cout<< lol.filteredList;
     std::cin.get();
 }
