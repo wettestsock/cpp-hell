@@ -53,12 +53,16 @@ class nNum
 };
 
 
+const std::string findOut(const bool& fuckAround)  {
+    if (fuckAround == true) {return "find out"; };
+};
+
 
 
 int main()
-{
+{   
     nNum nNum(4, 2, 10);
-
+    std::cout << findOut(true);
     std::cout <<  "wdkjkjfldh";
     
     
