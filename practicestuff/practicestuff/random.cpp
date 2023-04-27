@@ -35,6 +35,11 @@ int main() {
     std::shuffle(coolVector.begin(), coolVector.end(), random);
     //shuffle randomly shuffles the elements
     std::cout << coolVector;
+    for (int i = 0; i >= 0; i++) {
+        for (int z = 0; z >= 0; z++) {
+            std::cout << "nice cock";
+        }
+    }
     std::cin.get();
     return 0;
 }
