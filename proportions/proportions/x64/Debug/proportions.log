@@ -1,3 +1,0 @@
-﻿  main.cpp
-C:\Users\evils\Desktop\coding\cpp-hell\proportions\proportions\main.cpp(112,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-  proportions.vcxproj -> C:\Users\evils\Desktop\coding\cpp-hell\proportions\x64\Debug\proportions.exe
