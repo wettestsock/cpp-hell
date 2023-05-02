@@ -3,13 +3,16 @@
 #include <stdbool.h> //booleans!
 
 
-void main() {
+int main() { //note: main can also be an integer
 
 	int x = 3; //integer lol, 4 bytes 
 	signed int y = 3;  // <---- all variables are already signed by default
 	short int z = 453; // <---- 2 bytes, stores half the regular int
 
 	short v = 432; //same as a short int, just dont need the int part
+
+	long long int bigboy = 439589835875893; //-9 to 9 quintillion , 8 bytes , %lld to output it
+	//long long because int is long by default, long long just expands it
 
 	//note : if number is beyond the maximum value, itll reset and return to the maximum negative value 
 
