@@ -22,7 +22,7 @@ int main() { //note: main can also be an integer
 	char pissNumber = 100; 
 	//can store a variable in a char between -128 adn 127, %d or %c, 1 byte of memory
 	unsigned char positivity = 100; // 0 to 255, because cant be negative, if beyond 255 itll reset to 0
-
+	
 
 	//note: if %c is used to output, itll be automatically converted in accordance with the ascii table
 
