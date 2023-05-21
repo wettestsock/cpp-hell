@@ -3,15 +3,19 @@
 #include <stdbool.h> //booleans!
 
 
+
+
 int main() { //note: main can also be an integer
 
 	int x = 3; //integer lol, 4 bytes 
+
+	
 
 	//NOTE: ONLY INTEGERS CAN BE SIGNED / UNSIGNED
 	signed int y = 3;  // <---- all variables are already signed by default
 	short int z = 453; // <---- 2 bytes, stores half the regular int
 
-	const float pi = 3.14159; //const, same as c++
+	const float pie = 3.149f; //const, same as c++
 
 	short v = 432; //same as a short int, just dont need the int part
 
@@ -22,7 +26,7 @@ int main() { //note: main can also be an integer
 
 	//note : if number is beyond the maximum value, itll reset and return to the maximum negative value 
 
-	float gpa = 0.24; //float, 7 digits, 4 bytes
+	float hii = 4.323454f; 
 	double h = 3.568; //whoa, 8 bytes 
 	char piss = 'a'; //char
 	char pissNumber = 100; 
@@ -69,6 +73,9 @@ int main() { //note: main can also be an integer
 
 	printf("float precision !!! : %.2lf", h);
 	printf("\n");	
+
+	int input;
+
 	
 
 
@@ -77,9 +84,30 @@ int main() { //note: main can also be an integer
 
 	printf("field width !!! : %20lf", h); 
 	printf("\n"); 
+
 	
 	printf("field width but from the left !!! : %-20lf lmaoooo", h); 
 	printf("\n");
+	//---------------
+
+
+
+	//INPUT!!!!!!! ---------
+
+	//use scanf
+
+	//data type followed b y the variable it's stored in 
+	//note::: has to be passed BY REFERENCE !! ^
+
+	printf("PUT A NUMBER RRRRR \n");
+
+	(void)scanf("%d", &input);
+	
+	printf("the bullshit number u just put is::: %d", input);
+	
+	
+
+
 
 	/*  other format specifiers
 	* \a <--- alert
@@ -91,7 +119,6 @@ int main() { //note: main can also be an integer
 	* \b <--- backspace
 	*/
 	printf("\n");
-	system("pause"); //basically std cin get
-
+	return 0;
 }
      
