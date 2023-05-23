@@ -4,7 +4,8 @@
 #include <math.h>			//math!!!
 #include <ctype.h>			//a lot of functions for string manipulaiton
 #include <string.h>				//string functions
-#include "outsideMain.c" //connects this c file to outsideMain (structs and typedef)
+#include <stdlib.h> 
+#include <time.h>
 
 //functions are after main, more advantages for doign so
 
@@ -94,6 +95,7 @@ typedef struct {
 	char password[12];
 	int id;
 } User; //typedef struct name
+//essentially declared same way a class is in c++
 
 //ARRAY OF STRUCTS ---------------
 
@@ -102,6 +104,15 @@ struct Student {
 	float gpa;
 };
 
+//-------
+
+//ENUMS ---------------
+//a user defined type of named integer identifiers ,  a constant
+//helps to make program more readable
+//can be called in BOTH MAIN AND OUTSIDE
+
+//enum Day {Sun, Mon, Tue, Wed, Thu, Fri, Sat}; //index is automatically 0 to n
+enum Day {Sun=1, Mon=2, Tue=3, Wed=4, Thu=5, Fri=6, Sat=7}; //can manually assign values
 
 
 
@@ -109,6 +120,99 @@ struct Student {
 
 
 int main() {			//note: main can also be an integer
+
+
+	//enums!!!  ---------
+
+	enum Day today = Tue; //treats Sun as an integer
+
+	printf("%d\n", today);
+
+
+	//--------
+
+
+	//BITWISE OPERATORS !!!! ---------------
+	//binary manipulation, very fast
+
+	/*
+	&		<--------- and
+	|		<--------- or
+	^		<--------- exclusive or
+	<<		<--------- left shift
+	>>		<--------- right shift
+	*/
+
+	int a = 6;  //  6 = 00000110
+	int b = 12; // 12 = 00001100
+	int c = 0;  // 0 =  00000000
+
+	c = a & b;  //   =  00000100 or 4
+	//      ^^ if both binary places of a and b are the same, it puts it as a 1 
+
+
+	c = a | b;  //   =  00001110  === 14
+	//		^^ only 1 OR BOTH of the bits has to be 1 for it to be assigned
+	// 
+	c = a ^ b;  //   =  00001010  === 10
+	//		^^ only 1, not both of the bits has to be 1 for it to be assigned
+
+
+
+	c = a << 1; //   =  00001100  === 12
+	//		^^ shifts the bits 1 space to the left //DOUBLES THE #
+
+
+	c = a >> 1; //   =  00000011  === 3
+	//		^^ shifts the bits 1 space to the left //HALVES THE #
+
+	c = ~a;		//   =	00000001  === -7
+	//		^^ inverts the binary (negative because the first binary determines if it's positive or not
+
+
+	printf("\nthe really awesome binary number is :: %d\n", c);
+
+
+				//MEMORY / POINTERS -----------------------------------------------------
+				//random notes: each byte is 8 binary characters , or 8 on/off switches
+
+
+	char aa = 'X';
+
+	char byteName[6];
+	memcpy(byteName, ((sizeof(aa) == 1) ? "byte" : "bytes"), 6); //memcpy <- copies to , from, and num of characters
+
+	printf("\nthe size of a char named aa is::  %d %s, or %d on/off switches\n", sizeof(aa), byteName, sizeof(aa) * 8); 
+
+	printf("memory address of aa::::  %p\n", &aa); //%p <- memory address, value has to be called by reference
+	//memory addresses are 16 characters long
+
+	//note::  memory addresses are in hexadecimal form (0 - 9 with A- F) usual decimal form is 0-9
+
+	//----------
+					//POITNERSSSSSSSS --------
+
+	//advantages of pointers:
+	//  -less time in program executions
+	//  -working on the original var
+	//  -can make data structures (linked list, stack, queue)
+	//  -returning more than 1 value from funtions
+	//  -searching and sorting large data easier
+	//  -dinamic memory allocation
+
+	int age = 23;
+	int* oldass = &age; //& gives the address , pointer stores the address !!
+	int* old = 22;
+	
+
+
+
+
+
+
+
+
+	//----------------------
 
 	//struct calling !!! 
 
@@ -139,6 +243,8 @@ int main() {			//note: main can also be an integer
 
 	//----------
 	
+
+
 	//ARRAY OF STRUCTS---
 
 	struct Student student1 = { "Spongebob", 3.0f };
@@ -150,8 +256,10 @@ int main() {			//note: main can also be an integer
 	struct Student students[] = { student1, student2, student3, student4 }; 
 
 	for (int i = 0; i < sizeof(students) / sizeof(students[0]); i++) {
-		printf("%s\n", students[i].name);
+		printf("%-10s---- ", students[i].name);
+		printf("%.1f\t", students[i].gpa);
 	};
+	
 
 
 
@@ -348,6 +456,12 @@ int main() {			//note: main can also be an integer
 				//--------------
 
 	
+
+	//RANDOM !!!!!!!-----------------
+
+	srand(time(0));
+	int randomNumber = (rand()%10);
+	int randNinRange = (rand() % 100) + 1; //random number from 1 (min) to 100 (max)
 
 
 

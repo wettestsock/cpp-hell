@@ -18,8 +18,5 @@
     <ClCompile Include="cPractice.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="outsideMain.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
 </Project>
