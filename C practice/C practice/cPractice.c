@@ -4,25 +4,26 @@
 #include <math.h>			//math!!!
 #include <ctype.h>			//a lot of functions for string manipulaiton
 #include <string.h>				//string functions
+#include "outsideMain.c" //connects this c file to outsideMain (structs and typedef)
 
-			//functions are after main, more advantages for doign so
+//functions are after main, more advantages for doign so
 
 
-			//FUNCTION PROTOTYPE  ------
-			//a function declaration without a body , before main, 
-			//that ensures that calls to the function are made with correct # of arguments
-			//if too few arguments, itll call an error: too few arguments for call
+//FUNCTION PROTOTYPE  ------
+//a function declaration without a body , before main, 
+//that ensures that calls to the function are made with correct # of arguments
+//if too few arguments, itll call an error: too few arguments for call
 
-			//many c compilers dont check for parameter matching, commonly used in header files
+//many c compilers dont check for parameter matching, commonly used in header files
+
 
 void superBirthday(char[]);
-			//---------
+//---------
 
 
 
-
-			//FUNCTIONS !!! --
-			//note: you can call functions after the main function
+//FUNCTIONS !!! --
+//note: you can call functions after the main function
 
 void birthday() {			//return type
 	printf("happy birthday dudeeee!!!\n");
@@ -36,9 +37,9 @@ int multiply(int x, int y) {
 	return x * y;
 };
 
-void bubbleSort(double array[], int size) { 
+void bubbleSort(double array[], int size) {
 
-	
+
 
 	//bubblesort algorithm 
 	//sorts first element against all and if it's biggest, puts it back
@@ -48,11 +49,11 @@ void bubbleSort(double array[], int size) {
 	for (int i = 0; i < size - 1; i++) {
 		for (int j = 0; j < size - i - 1; j++) //each iteration the number is compared to the rest of the numbers
 		{
-			if (array[j] > array[j+1]) //flip this sign to invert
+			if (array[j] > array[j + 1]) //flip this sign to invert
 			{
 				double temp = array[j];  //if number on left is bigger than on the right, the var is swapped
-				array[j] = array[j+1];
-				array[j+1] = temp;
+				array[j] = array[j + 1];
+				array[j + 1] = temp;
 			};
 		};    //note: cant return an array :((
 	};
@@ -60,13 +61,13 @@ void bubbleSort(double array[], int size) {
 
 
 void printArr(double array[], int size) {
-	for(int i=0; i<size; i++) {
+	for (int i = 0; i < size; i++) {
 		printf("%.1lf\t", array[i]);
 	};
 	printf("\n");
 }
 
-			//--------
+//--------
 
 
 // STRUCTTTTSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS -------------------
@@ -74,7 +75,8 @@ void printArr(double array[], int size) {
 
 
 struct Player {
-
+	char username[12];
+	int score;
 };
 
 
@@ -82,9 +84,75 @@ struct Player {
 
 //---------------------------------------------------
 
+//TYPEDEF -----------
+
+typedef char oguser[25]; //if i need a char array of 25 bytes , call it by datatype user
+
+
+typedef struct {
+	char superName[25];
+	char password[12];
+	int id;
+} User; //typedef struct name
+
+//ARRAY OF STRUCTS ---------------
+
+struct Student {
+	char name[12];
+	float gpa;
+};
+
+
+
+
+
 
 
 int main() {			//note: main can also be an integer
+
+	//struct calling !!! 
+
+	struct Player player1;
+	struct Player player2;
+
+	strcpy(player1.username, "swag");
+	printf("%s\n", player1.username);
+
+	player1.score = 4;
+	
+	strcpy(player2.username, "cool");
+	printf("%s\n", player2.username);
+
+	player2.score = 4;
+
+	//typedef struct  --
+
+	User user1 = { "super name", "123123", 4234345 }; //calls the members in the struct 
+	//no longer need to call the struct keyword when calling the struct
+
+	//--------
+
+	//typedef calling !!!! 
+	
+	oguser user01 = "lmao"; //user is a data type of char array with 24 characters
+
+
+	//----------
+	
+	//ARRAY OF STRUCTS---
+
+	struct Student student1 = { "Spongebob", 3.0f };
+	struct Student student2 = { "Patrick", 2.5f };
+	struct Student student3 = { "Sandy", 4.0f };
+	struct Student student4 = { "Squidward", 2.0f };
+
+
+	struct Student students[] = { student1, student2, student3, student4 }; 
+
+	for (int i = 0; i < sizeof(students) / sizeof(students[0]); i++) {
+		printf("%s\n", students[i].name);
+	};
+
 
 
 				// DATAA TYPES --------------
