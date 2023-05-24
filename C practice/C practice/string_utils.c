@@ -15,13 +15,6 @@
 //functions are after main, more advantages for doign so
 
 
-//FUNCTION PROTOTYPE  ------
-//a function declaration without a body , before main, 
-//that ensures that calls to the function are made with correct # of arguments
-//if too few arguments, itll call an error: too few arguments for call
-
-//many c compilers dont check for parameter matching, commonly used in header files
-
 
 void superBirthday(char[]);
 //---------

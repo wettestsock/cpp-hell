@@ -146,6 +146,7 @@ int main() {			//note: main can also be an integer
 	int* oldass = &age; //& gives the address , pointer stores the address !!
 	int* old = 22;
 
+
 	//pointer can be null
 	
 	printf("\ndereferenced pointer is::: %d, the address is: %p\n", *oldass, oldass);
