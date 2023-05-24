@@ -180,9 +180,9 @@ int main() {			//note: main can also be an integer
 	char aa = 'X';
 
 	char byteName[6];
-	memcpy(byteName, ((sizeof(aa) == 1) ? "byte" : "bytes"), 6); //memcpy <- copies to , from, and num of characters
+	strcpy(byteName, ((int)(sizeof(aa) == 1)) ? "byte" : "bytes"); //memcpy <- copies to , from, and num of characters
 
-	printf("\nthe size of a char named aa is::  %d %s, or %d on/off switches\n", sizeof(aa), byteName, sizeof(aa) * 8); 
+	printf("\nthe size of a char named aa is::  %d %s, or %d on/off switches\n", (int)sizeof(aa), byteName, (int)sizeof(aa) * 8); 
 
 	printf("memory address of aa::::  %p\n", &aa); //%p <- memory address, value has to be called by reference
 	//memory addresses are 16 characters long
@@ -190,6 +190,10 @@ int main() {			//note: main can also be an integer
 	//note::  memory addresses are in hexadecimal form (0 - 9 with A- F) usual decimal form is 0-9
 
 	//----------
+	
+
+
+
 					//POITNERSSSSSSSS --------
 
 	//advantages of pointers:
@@ -203,13 +207,106 @@ int main() {			//note: main can also be an integer
 	int age = 23;
 	int* oldass = &age; //& gives the address , pointer stores the address !!
 	int* old = 22;
+
+	//pointer can be null
 	
+	printf("\ndereferenced pointer is::: %d, the address is: %p\n", *oldass, oldass);
+	//value of a pointer is 8 bytes, or 2^63 numbers, or 64 binary numbers, enough to store the hexadecimal address
+
+
+	//--------------------------
+
+				//FILE HANDING
+
+	
+	FILE* pfWrite = fopen("test.txt", "a"); //w for write, a for append, r for read //FILE data type
+	//pointer to the file
+	//if file doesnt exist, a new one will be created
+
+
+	//do not dereference the pointer
+	//fprintf(pf, "you......fjdosjgifd"); //print in the file
+	//fclose(pf);
+
+
+				//WRITING TO FILE
+
+	fprintf(pfWrite, "lmao idk\n"); 
+	fputs("lmao idk but with fputs\n", pfWrite);
+	fclose(pfWrite);
+	//NOTE : changes to the text file take effect only after fclose 
+	//fclose automatically applies after the code has been executed
 
 
 
+	//---
 
 
 
+			//GET CONTENT FROM FILE ---
+
+	FILE* pfGet = fopen("test.txt", "r"); //w for write, a for append, r for read //FILE data type
+											//when getting, use read , when editing,, use write/append
+
+	//NOTE: fopen takes either relative or absolute file path 
+	// //note: for absolute file path, \\ slahes need to be double
+	//relative to the c file or from desktop
+
+
+	char content[1000]; //this is a buffer
+
+	if (pfGet != NULL)
+	{
+		//fgets(content, 1000, pfGet);			//note: if fgets has been invoked before, the next line read is line down
+		//fgets(content, 1000, pfGet);
+		//printf("line :\t%s\n", content);
+
+		int count = 1;
+		while (fgets(content, 1000, pfGet)) { //while loop for reading more than 1 line, true if theres something and false if there isnt
+		
+			
+			//buffer (where memory is stored), amount, and which file from
+			printf("line %d:\t%s\n",count, content);
+			count++;
+			
+		};
+		fclose(pfGet); //good practice to close the file
+	}
+	else //if the file doesnt exist
+	{
+		for (int i = 0; i < 10; i++) {
+			printf("\nGET OUTTTTT, UNSUCCESSFUl");
+		}; printf("\n");
+	};
+
+	//other file handling functions ::
+	/*
+		getw() <- reads an int
+		fputs() <- puts a string
+		fputchar() <- puts a char
+		fseek() <- moves file pointer position to another locatiron
+		SEEK_SET <- moves file pointer to beginning of the file
+		SEEK_CUR <- moves file pointer to given location
+		SEEK_END <- moves file pointer position to end of file
+		ftell() <- gives position of the pointer
+		rewind() <- same as SEEK_SET
+		getc() <- gets character from file
+		getch() <- gets character from keyboard
+		getche() <- reads character and echoes to o/p screen
+		getchar() <- reads char from keyboard
+		putc() <- writes char to file
+		putchar () <- writes char to screen
+		putc() <- writes char to file
+		putchar() <- puts char to screen
+		printf() <- writes formatted data to screen 
+		srintf() <- writes formatted data to string 
+		scanf() <- reads formatted data from keyboard
+		remove() <- deletes a file
+		fflush() <- flusehs a file
+	
+	*/
+
+	//----------
 
 
 	//----------------------
@@ -320,15 +417,15 @@ int main() {			//note: main can also be an integer
 				//	_strlwr(string1);			// converts a string to lowercase
 				//	_strupr(string1);			// uppercase 
 				//note: WATCH OUT FOR BUFFER OVERFLOWSSSS
-				//	strncat(string1, string2, 1);			//appends n characters from string
+				//	strncat(string1, string2, 1);		//appends n characters from string
 				//	strcpy(string1, string2);			//string copy string2 to string1
-				//  strncopy(string1, string2);				//string copy n characters
-		strcat(string1, string2);			// concatanates 2 strings together into the first string
-		_strset(string1, '?');			//sets all characters of a string to a character
-		_strnset(string1, 'G', 5);			//sets the first n characters of a string to given character
-		_strrev(string1);			//reverses a string
+				//  strncopy(string1, string2);			//string copy n characters
+				    strcat(string1, string2);			// concatanates 2 strings together into the first string
+				    _strset(string1, '?');				//sets all characters of a string to a character
+				    _strnset(string1, 'G', 5);			//sets the first n characters of a string to given character
+				    _strrev(string1);					//reverses a string
 
-	int result1 = strlen(string1);			//length of string , common
+	int result1 = (int)strlen(string1);			//length of string , common
 	bool result2 = strcmp(string1, string2);			//boolean which compares the strings and sees if theyre the same , can be an int too
 	bool result3 = strncmp(string1, string2, 2);			//compare of n first characters 
 	int result4 = _strcmpi(string1, string2);			//i for ignore case sensitive
@@ -459,7 +556,7 @@ int main() {			//note: main can also be an integer
 
 	//RANDOM !!!!!!!-----------------
 
-	srand(time(0));
+	srand((int)time(0));
 	int randomNumber = (rand()%10);
 	int randNinRange = (rand() % 100) + 1; //random number from 1 (min) to 100 (max)
 
