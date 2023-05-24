@@ -5,7 +5,7 @@
 #include <algorithm>
 #include <numeric> //std::iota (iterator list filler)
 using std::iota;
-const char& n = '\n';
+static const char& n = '\n'; //static meaning only stored in memory once
 
 //RANDOM NUMBER GENERATOR (cool and awesome version)
 
@@ -19,6 +19,29 @@ std::ostream& operator<<(std::ostream& out, const std::vector<int>& temp) {
 
 int main() {
     // Write C++ code here
+
+
+    //STATIC -------------
+    static int i;
+
+    //^^ space for the variable is allocated only once per execution, and cannot be created more than once
+    //cant have class with different int i's;
+
+    FILE* pfGet;
+    
+    fopen_s(&pfGet, "test.txt", "r"); //fopen but in c++
+
+    if (pfGet!=NULL) 
+    {
+        std::cout << "get tf outta here loser";
+    }
+    else
+    {
+        std::cout << "no file found\n";
+    }
+
+
+
     std::cout << "Hello world!" << n;
     std::random_device random; //this is the source of randomness
     std::uniform_int_distribution<int> dist(1, 9);
