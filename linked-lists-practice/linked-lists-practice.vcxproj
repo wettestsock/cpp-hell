@@ -127,7 +127,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="linked-lists-practice.cpp" />
+    <ClCompile Include="linked-lists-practice.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="linked-lists-practice.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
