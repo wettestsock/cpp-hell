@@ -1,3 +1,5 @@
+#define _CRTDBG_MAP_ALLOC
+#include <crtdbg.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -22,76 +24,239 @@ typedef struct node {
 
 
 
-//ADDING ELEMENTS TO A LINKED LIST ------
+//ADDING ELEMENTS TO A LINKED LIST AT THE END ------
 
-void insert_end(node** root, int value) {
-	//get to the last node and change the null pointer to the new pointer
+void insert_end(node** root, int value) { //double pointer if root pointer needs to be changed what it's pointing to
 
 	node* new = malloc(sizeof(node));
-
 	if (new == NULL)
 	{
-		exit(1); //closes the program if new is null, just failcheck
-		//as if return 1 in main
+		exit(1);
 	};
 
+	new->x = value;
+	new->next = NULL;
 
-	new->x = value; //the insert node
-	new->next = NULL; //because new node is added to the end
-	
-	//double pointer is a pointer to a pointer which points to node
-
-
-	//what if the root is null???
 	if (*root == NULL) 
 	{
-		*root = new;  //simply places the new node (with int value) as the root element (1st)
-		return; //returns the void function
+		*root = new; 
+		return;
 	}
 
-
-
-	node* current = *root; //dereference root once for the pointer 
-	//starts at *root
-	while (current->next != NULL)
+	node* c = *root;  //starts at *root
+	while (c->next != NULL)
 	{
-		current = current->next;
+		c = c->next;
 	};
-	//exits knowing current pointer is null (pointer next of last element in a linked list)
 
-	current->next = new; //changes the address to the new node, which has the value ineger and a next to null
+	c->next = new;
 
 };
 
 //-------------
 
-void printLL(node** root) {
-	node* current = *root; //i=0
 
-	while (current != NULL) { //while (i != NULL)
-		printf("\t%d\n", current->x);
-		current = current->next; //i++
+//ADDING AT BEGINNING OF A LINKED LIST
+//replace the root node to the added node, and link added nodes
+
+void insert_beginning(node** root, int input) {
+	node* new = malloc(sizeof(node));
+	if (new==NULL)
+	{
+		exit(0);
+	}
+
+	new->x = input;
+	new->next = *root; //if first element is fine because if it is, *root will be null
+
+	*root = new; //replace the root address to new 
+
+}
+
+
+//--------------------------------------------
+
+
+//ADD AFTER AN ELEMENT IN A LINKED LIST
+//copy node, change the value, and change the pointer of the original node
+
+
+void insert_after(node* n, int value) {  //dont need to change actual pointer
+	node* new = malloc(sizeof(node));
+	if (new==NULL)
+	{
+		exit(0);
+	}
+
+	new->x = value;
+	new->next = n->next; //the new next points to same as the node
+
+	n->next = new;
+
+
+
+} 
+
+//----------------
+
+//INSERT SORTED
+
+//smaller or equal than the next
+//note: linked list has to be sorted
+
+void insert_sorted(node** root, int value) {
+	if (*root == NULL || (*root)->x >= value)
+	{
+		insert_beginning(root, value);
+		return;
+	};
+
+	node* c = *root;
+	while (c->next != NULL) {
+		if (c->next->x >= value)
+		{
+			break; //breaks the while loop
+		}
+		c = c->next;
+	};
+	insert_after(c, value); //inserts element at c (current)
+
+}
+
+
+
+//---------
+
+
+//REMOVING AN ELEMENT FROM LINKED LIST
+
+void remove_element(node** root, int value) { //1st instance of the value
+	if (*root == NULL)
+	{
+		return;
+	};
+
+	if ((*root)->x == value) { //exception for root node == value
+		node* temp = *root;
+		*root = (*root)->next; //original root points to the next element for other operations to work
+		free(temp);
+		return;
+	}
+
+
+
+	node* c = *root;
+	while (c->next != NULL)
+	{
+		if (c->next->x == value) {
+			node* temp = c->next;
+			c->next = c->next->next; //changes pointer of current to point to next value
+			free(temp);
+			return;
+		}
+
+		c = c->next;
+	}
+};
+
+void remove_all(node** root, int value) {
+	if (*root == NULL)
+	{
+		exit(0);
+	};
+
+
+
+
+	if ((*root)->x == value) {
+		node* temp = *root;
+		*root = (*root)->next;
+		free(temp);
+		return;
+	};
+
+	node* c = *root;
+	while (c != NULL) {
+
+		if (c->next->x == value) {
+			node* temp = c->next;
+			c->next = c->next->next;
+			free(temp);
+		}
+		c = c->next;
+	}
+
+
+}
+
+
+
+
+//DEALLOCATION OF THE LINKED LIST
+
+void deallocate(node** root) {
+	//cant just deallocate the memory for the root node , the other nodes are still in memory but cant be accessed
+
+	node* c = *root;
+	while (c != NULL) {
+		node* temp = c; //makes a pointer to the c
+		c = c->next; //switches to the next
+		free(temp); //frees memory of temp
+	};
+	*root = NULL; //dereferences the root memory
+};
+
+
+//------------
+
+//note: all functions can be implemented using either recursion or iteration
+//can make anything recursion or iteration
+
+
+
+void printLL(node** root) {
+	node* c = *root; //i=0
+
+	while (c != NULL) { //while (i != NULL)
+		printf("\t%d\n", c->x);
+		c = c->next; //i++
 	};
 
 };
 
 
 int main(int argc, char* argv[]) {
-	node* root = malloc(sizeof(node)); //dynamically allocated on the heap
-	if (root == NULL)
-	{
-		exit(2); //very important because it's difficult to track down
-	};
+	node* root = NULL;
 
+	//insert_sorted(&root, 5);			//NEEDS TO BE SORTED
+	//insert_sorted(&root, 67);
+	//insert_sorted(&root, 32);
+	//insert_sorted(&root, 1);
+	//insert_sorted(&root, 345);
+	//insert_sorted(&root, 434); //if try to run value bigger than all the rest 
 
-	root->x = 15; //1st, head node
-	root->next = NULL;
 
 	insert_end(&root, 5); //pass by reference because function needs the place in memory the pointer is stored in (hence, pointing ot a pointer)
 	
+	insert_beginning(&root, 24);
+	insert_beginning(&root, 24);
+	
+	insert_after(root, 7);
+	insert_after(root->next->next, 34532); //1st, 2nd, 3rd element
+
+	remove_all(&root, 24); //removes the element 5
+
 
 
 	printLL(&root);
+
+
+
+	deallocate(&root);
+	_CrtDumpMemoryLeaks(); //checks for memory leaks
+
+	//#define _CRTDBG_MAP_ALLOC
+	//#include <crtdbg.h>
 
 
 
@@ -99,33 +264,33 @@ int main(int argc, char* argv[]) {
 	//ITERATING THROUGH A LINKED LIST --------------
 	/*
 
-	where current = pointer in the node
+	where c = pointer in the node
 
 	BEGINNING:
-	node* current = &root;
+	node* c = &root;
 
 	ITERATION:
-	current = current->next;
+	c = c->next;
 
 	STOP:
-	current != NULL;
+	c != NULL;
 
 
 
 	*/
 	//
-	//node* current = &root; //beginning of the iteration
-	//while (current != NULL) {
+	//node* c = &root; //beginning of the iteration
+	//while (c != NULL) {
 	//	// .... code
-	//	printf("----\t %d\n", current->x);
+	//	printf("----\t %d\n", c->x);
 	//
 	//
-	//	current = current->next;
+	//	c = c->next;
 	//	
 	//};
 	//
-	//for (node* current = &root; current != NULL; current = current->next) {  //for loop works too but is ugly
-	//	printf("----\t %d\n", current->x);
+	//for (node* c = &root; c != NULL; c = c->next) {  //for loop works too but is ugly
+	//	printf("----\t %d\n", c->x);
 	//};
 	//
 	//------------------------------------------
@@ -133,8 +298,6 @@ int main(int argc, char* argv[]) {
 
 
 
-
-	free(root); //because the dynamically allocated memory needs to be released manually
 
 
 	return 0;

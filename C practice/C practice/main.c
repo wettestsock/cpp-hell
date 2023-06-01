@@ -6,7 +6,7 @@
 #include <string.h>				//string functions
 #include <stdlib.h> 
 #include <time.h>
-#include "header.h" //header file
+#include "header.h" //rooter file
 
 
 // STRUCTTTTSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS -------------------
@@ -54,17 +54,83 @@ enum Day {Sun=1, Mon=2, Tue=3, Wed=4, Thu=5, Fri=6, Sat=7}; //can manually assig
 
 
 
+typedef struct node {
+	double x;
+	struct node* next;
+} node;
+
+
+void node_next(node** head, double num) {
+	node* new = malloc(sizeof(node));
+	if (new == NULL) {
+		exit(0);
+	}
+	else if (*head == NULL) {
+		*head = new;
+		return;
+	}
+
+	new->x = num;
+	new->next = NULL;
+
+
+
+	node* current = *head;
+
+	while (current->next != NULL) {
+		current = current->next;
+	};
+	current->next = new;
+
+};
+
+
+
+void next_end(node** head, double input) {
+	printf("the node is: %.2lf", input);
+	node* new = malloc(sizeof(node));
+	if (new == NULL)
+	{
+		exit(0);
+	}
+	new->x = input;
+	new->next = NULL;			//make new node, condition, find last node, put the pointer in last node to new
+
+	if (*head == NULL)
+	{
+		*head = new;
+		return;
+	};
+
+	node* current = *head;
+	while (current->next != NULL) {
+		
+		current = current->next;
+	};
+	current->next = new;
+	
+
+};
 
 
 
 int main() {			//note: main can also be an integer
 
 
+	node* root = malloc(sizeof(node));
+	root->x = 3;
+	root->next = NULL;
+
+	next_end(&root, 5);
+	
+
+
+
 	//enums!!!  ---------
 
 	enum Day today = Tue; //treats Sun as an integer
 
-	printf("%d\n", today);
+	printf("\ntoday is :%d\n", today);
 
 
 	//--------
