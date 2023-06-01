@@ -38,7 +38,7 @@ void insert_end(node** root, int value) { //double pointer if root pointer needs
 	new->x = value;
 	new->next = NULL;
 
-	if (*root == NULL) 
+	if (*root == NULL)		//why root is a double pointer
 	{
 		*root = new; 
 		return;
@@ -229,6 +229,29 @@ bool has_loops(node* root) {
 //-----------------
 
 
+//COUNT # OF ELEMENTS
+
+int count(node* root) {
+	int count = 0;
+
+	node* c = root;
+	while (c != NULL)
+	{
+		count++;
+		c = c->next;
+	}
+	return count;
+}
+//-----------------------------------
+
+int count_recursive(node* root) {			//iteration is usually better than recursion
+	if (root==NULL) //for final element
+	{
+		return 0;
+	}
+
+	return 1 + count(root->next);
+}
 
 
 
@@ -277,6 +300,11 @@ int main(int argc, char* argv[]) {
 	{
 		printf("The linked list has a loop :///\n");
 		return 1;
+	}
+	else
+	{
+		printf("The linked list does not have a loop :))))))))))))\nThe total # of elements is: %d\n\n", count(root));
+		
 	}
 
 	printLL(&root);
