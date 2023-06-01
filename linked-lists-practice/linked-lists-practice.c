@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
 
 
 
@@ -59,7 +60,7 @@ void insert_end(node** root, int value) { //double pointer if root pointer needs
 //ADDING AT BEGINNING OF A LINKED LIST
 //replace the root node to the added node, and link added nodes
 
-void insert_beginning(node** root, int input) {
+void insert_beginning(node** root, int input) { //double pointer if wants to change the root node pointer
 	node* new = malloc(sizeof(node));
 	if (new==NULL)
 	{
@@ -77,7 +78,7 @@ void insert_beginning(node** root, int input) {
 //--------------------------------------------
 
 
-//ADD AFTER AN ELEMENT IN A LINKED LIST
+//INSERT AFTER 
 //copy node, change the value, and change the pointer of the original node
 
 
@@ -144,7 +145,6 @@ void remove_element(node** root, int value) { //1st instance of the value
 	}
 
 
-
 	node* c = *root;
 	while (c->next != NULL)
 	{
@@ -158,39 +158,6 @@ void remove_element(node** root, int value) { //1st instance of the value
 		c = c->next;
 	}
 };
-
-void remove_all(node** root, int value) {
-	if (*root == NULL)
-	{
-		exit(0);
-	};
-
-
-
-
-	if ((*root)->x == value) {
-		node* temp = *root;
-		*root = (*root)->next;
-		free(temp);
-		return;
-	};
-
-	node* c = *root;
-	while (c != NULL) {
-
-		if (c->next->x == value) {
-			node* temp = c->next;
-			c->next = c->next->next;
-			free(temp);
-		}
-		c = c->next;
-	}
-
-
-}
-
-
-
 
 //DEALLOCATION OF THE LINKED LIST
 
@@ -211,6 +178,59 @@ void deallocate(node** root) {
 
 //note: all functions can be implemented using either recursion or iteration
 //can make anything recursion or iteration
+
+
+
+//REVERSING A LINKED LIST
+//prev, c, and next
+
+void reverse(node** root) {
+
+	node* prev = NULL; //if list is empty itll automatically be set to null
+
+
+	node* c = *root;
+	while (c != NULL) {
+		node* next = c->next;
+
+		c->next = prev; //reversing the arrow
+
+		prev = c;
+		c = next; 
+	}
+
+
+	*root = prev;  //cant be c because c is null by the time the for loop is done
+}
+
+
+
+//---------------------
+
+//FINDING LOOPS/CYCLES IN A LINKED LIST
+
+bool has_loops(node* root) {
+	node* slow = root;
+	node* fast = root;
+
+	while (slow != NULL && fast != NULL) //fast reaches null faster, so has to check for both slow and fast
+	{
+		slow = slow->next;
+		fast = fast->next->next; //iterates double speed of slow
+
+		if (slow==fast)
+		{
+			return true;
+		}
+	}
+	return false;
+
+}
+//-----------------
+
+
+
+
 
 
 
@@ -236,19 +256,35 @@ int main(int argc, char* argv[]) {
 	//insert_sorted(&root, 434); //if try to run value bigger than all the rest 
 
 
-	insert_end(&root, 5); //pass by reference because function needs the place in memory the pointer is stored in (hence, pointing ot a pointer)
-	
-	insert_beginning(&root, 24);
-	insert_beginning(&root, 24);
-	
-	insert_after(root, 7);
-	insert_after(root->next->next, 34532); //1st, 2nd, 3rd element
+	//insert_end(&root, 5); //pass by reference because function needs the place in memory the pointer is stored in (hence, pointing ot a pointer)
+	//
+	//insert_beginning(&root, 24);
+	//insert_beginning(&root, 24);
+	//
+	//insert_after(root, 7);
+	//insert_after(root->next->next, 34532); //1st, 2nd, 3rd element
 
-	remove_all(&root, 24); //removes the element 5
+	insert_end(&root, 2);
+	insert_end(&root, 4);
+	insert_end(&root, 5);
+	insert_end(&root, 6);
 
+	//root->next->next->next->next = root->next; //sets the pointer of the last node to point to head node, thus creating a circular loop
 
+	//reverse(&root);
+
+	if (has_loops(root))
+	{
+		printf("The linked list has a loop :///\n");
+		return 1;
+	}
 
 	printLL(&root);
+	
+	
+	return 0;
+
+
 
 
 
