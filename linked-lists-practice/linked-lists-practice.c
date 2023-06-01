@@ -310,7 +310,6 @@ int main(int argc, char* argv[]) {
 	printLL(&root);
 	
 	
-	return 0;
 
 
 
@@ -318,6 +317,7 @@ int main(int argc, char* argv[]) {
 
 	deallocate(&root);
 	_CrtDumpMemoryLeaks(); //checks for memory leaks
+	return 0;
 
 	//#define _CRTDBG_MAP_ALLOC
 	//#include <crtdbg.h>
