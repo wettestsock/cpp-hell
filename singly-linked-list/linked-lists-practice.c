@@ -205,6 +205,46 @@ void reverse(node** root) {
 
 
 
+void reverse_linked_list(node** root) {
+	node* prev = NULL;
+	node* c = *root;
+	while (c != NULL)
+	{
+		node* temp = c->next;
+
+		c->next = prev;
+		prev = c;
+		c = temp;
+	}
+	*root = prev;
+}
+
+void rever(node** root) {
+	node* prev = NULL;
+	node* c = *root;
+	while (c!=NULL)
+	{
+		node* next = c->next;
+		c->next = prev;
+		prev = c;
+		c = next;
+	}
+	*root = prev; 
+}
+
+void reve(node** root) {
+	node* prev = NULL;
+	node* c = *root;
+	while (c != NULL)
+	{
+		node* next = c->next;
+		prev = c;
+		c = next;
+
+	}
+	*root = prev;
+}
+
 //---------------------
 
 //FINDING LOOPS/CYCLES IN A LINKED LIST
@@ -255,6 +295,43 @@ int count_recursive(node* root) {			//iteration is usually better than recursion
 
 
 
+//puts values into a text file
+void serialize(node* root) {	//puts values in a text file
+	FILE* file;
+	fopen_s(&file, "list.txt", "w"); //write only
+	if (file==NULL)
+	{
+		exit(0);
+	}
+	node* c = root;
+	while (c!=NULL)
+	{
+		fprintf(file, "%d, ", c->x);
+		c = c->next;
+	}
+	fclose(file);
+}
+
+
+//helps serialize and deserialize into another process
+
+//takes the values from a text file
+void deserialize(node** root) {			//takes values from a text file
+	FILE* file;
+	fopen_s(&file, "list.txt", "r");
+	if (file==NULL)
+	{
+		exit(0);
+	}
+
+	int value;
+	while (fscanf_s(file, "%d, ", &value) > 0) //fscanf returns how many variables it reads 
+	{
+		insert_end(root, value);
+	}
+	fclose(file);
+}
+
 
 
 void printLL(node** root) {
@@ -287,10 +364,10 @@ int main(int argc, char* argv[]) {
 	//insert_after(root, 7);
 	//insert_after(root->next->next, 34532); //1st, 2nd, 3rd element
 
-	insert_end(&root, 2);
-	insert_end(&root, 4);
-	insert_end(&root, 5);
-	insert_end(&root, 6);
+	//insert_end(&root, 2);
+	//insert_end(&root, 4);
+	//insert_end(&root, 5);
+	//insert_end(&root, 6);
 
 	//root->next->next->next->next = root->next; //sets the pointer of the last node to point to head node, thus creating a circular loop
 
@@ -307,11 +384,11 @@ int main(int argc, char* argv[]) {
 		
 	}
 
+	deserialize(&root);
 	printLL(&root);
 	
 	
-
-
+	//serialize(root);
 
 
 
@@ -361,7 +438,7 @@ int main(int argc, char* argv[]) {
 
 
 
-
+	
 
 
 	return 0;

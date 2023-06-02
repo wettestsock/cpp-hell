@@ -20,13 +20,13 @@ void iterate(node* tail) {
 	}
 
 	node* c = tail;
-	while (c != NULL)
+
+	while (c->next != NULL)
 	{
-		printf("%s%d", c->prev==NULL? "" : " --> ", c->x);
+		printf("%d --> ", c->x);
 		c = c->next;
-	}
-	printf("\n\n");
-	return;
+	};
+	printf("%d\n", c->x);
 }
 
 
@@ -35,14 +35,13 @@ void iterate_back(node* head) {
 	{
 		exit(0);
 	}
-
 	node* c = head;
-	while (c != NULL) {
-		printf("%s%d",c->next==NULL?"":" <-- ", c->x);
+	while (c->prev != NULL) {
+		printf("%d <-- ", c->x);
 		c = c->prev;
 	}
-	printf("\n\n");
-	return;
+	printf("%d\n", c->x);
+
 }
 
 
@@ -98,7 +97,7 @@ void insert_beginning(node** tail, int value) {
 	new->prev = NULL;
 	new->next = *tail;
 
-		(*tail)->prev = new;
+	(*tail)->prev = new;
 	//replaces original tail prev with new (it was null)
 	
 	
@@ -141,9 +140,58 @@ void insert_after(node* theNode, int value) {
 		theNode->next->prev = new;
 	}
 	theNode->next = new;
-
+	
 
 }
+
+void remove_node(node* n) {
+	
+
+	if (n->prev != NULL)
+	{
+		n->prev->next = n->next;
+	}
+	if (n->next != NULL)
+	{
+		n->next->prev = n->prev;
+	}
+
+	free(n);
+
+}
+
+
+node* find_node(node* tail, int value) {
+	node* c = tail;
+	while (c != NULL) {
+		if ((c->x == value))
+		{
+			return c;
+		}
+
+
+		c = c->next;
+	}
+	return NULL;
+}
+
+void reverse(node** tail, node** head) {
+	node* c = *tail;
+
+	while (c!=NULL)
+	{
+		node* next = c->next;
+		c->next = c->prev;
+		c->prev = next;
+
+		c = next;
+	}
+	node* temp = *tail; //swap tail and head
+	*tail = *head;
+	*head = temp;
+
+}
+
 
 
 
@@ -157,16 +205,24 @@ int main(int argc, char** argv) {
 
 	
 
-
 	
 	insert_end(&head, 342);
 
 	insert_after(tail->next, 43); //inserts!!
 
+
+	//node* newTail = tail->next;		//
+	//remove_node(tail);
+	//tail = newTail; 
+
 	insert_end(&head, 4);
+
+	reverse(&tail, &head);
 
 	iterate(tail);
 	iterate_back(head);
+
+	printf("%p\n", find_node(tail, 5)); //find node works!!!!!
 
 
 	deallocate(&tail, &head);
