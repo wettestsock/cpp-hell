@@ -112,42 +112,8 @@ void next_end(node** head, double input) {
 
 };
 
-
-//stakcs          -> push and pop 
-
-int mystack[5];
-int top = -1; //empty
-
-
-bool push(int value) {
-	if (top >= 5)
-	{
-		return false;
-	} 
-	top++;
-	mystack[top] = value;
-	return true;
-}
-
-bool pop() {
-	if (top==-1)
-	{
-		return false;
-	}
-	int result = mystack[top];
-	top--;
-	return true;
-}
-
-
-
-//----------------
-
-
-//stacks w linked lists
-
-
-
+//atoi ->>>>> converts a string into an integer
+//atof ->>> converts to float 
 
 
 
