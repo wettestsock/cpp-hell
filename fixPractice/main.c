@@ -38,7 +38,23 @@ void pop(node** top) {
 	return;
 }
 
-void print(node* top) {
+void wipe(node** top) {
+	if (*top == NULL)
+	{
+		return;
+	}
+
+	node* c = *top;
+	while (c != NULL) {
+		node* temp = c;
+		c = c->prev;
+		free(temp);
+	}
+	*top = NULL;
+	return;
+}
+
+void stack_print(node* top) {
 
 	printf("    The stack is: \n");
 	node* c = top;
@@ -53,16 +69,21 @@ void print(node* top) {
 }
 
 
-void inToPost(char** infix) {
-	char* stack = malloc(sizeof(**infix));
 
-	char* new = "323";
-	*infix = new;
+void inToPost(char infix[]) {
+	if (infix == NULL)
+	{
+		return;
+	}
 
+	
+	//strcpy_s(infix, sizeof(infix), "\0");
 
-
-
-	free(stack);
+	
+	
+	
+	//strcat_s(infix, sizeof(infix), "fdg797");
+	
 	return;
 }
 
@@ -74,14 +95,21 @@ int main(int argc, char* argv[]) {
 	push(&top, '3');
 	push(&top, '4');
 	pop(&top);
-	print(top);
+	stack_print(top);
 
-	char* input = "43+54*";
+	char input[] = "43+5554*";
 
-	inToPost(&input);
+	
 
+	inToPost(input);
+
+	//strcpy_s(post, sizeof(post), input);
+
+	
 
 	printf("%s", input);
+
+	wipe(&top);
 
 	_CrtDumpMemoryLeaks();
 
