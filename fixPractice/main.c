@@ -57,15 +57,15 @@ void wipe(node** top) {
 
 void stack_print(node* top) {
 
-	printf("    The stack is: \n");
+	printf("    The stack is: \n\t-------\n");
 	node* c = top;
 
-	while (c->prev != NULL) {
-		printf("\t  %c\n\t-----\n", c->x);
+	while (c != NULL) {
+		printf("\t|  %c  |\n\t-------\n", c->x);
 
 		c = c->prev;
 	}
-	printf("\t  %c\n", c->x);
+	
 	return;
 }
 
@@ -80,6 +80,11 @@ void output_print(node* top) {
 }
 
 
+void sort(char c) {
+
+
+}
+
 
 void inToPost(char* infix) {
 	if (infix == NULL)
@@ -93,7 +98,25 @@ void inToPost(char* infix) {
 	node* output = NULL;
 
 	for (int i = 0; i < strlen(infix) + 1; i++) {
-		push(&output, *(infix + i));
+		switch (infix[i])
+		{
+		case '(': push(&stack, infix[i]); break;
+		case ')': break;
+
+
+
+
+
+		default:
+			push(&output, *(infix + i));
+			break;
+		}
+
+
+
+		
+
+
 
 	}
 	output_print(output);
@@ -119,7 +142,7 @@ int main(int argc, char* argv[]) {
 	pop(&top);
 	stack_print(top);
 
-	char input[] = "43+5554*"; //stored on the stack
+	char input[] = "(43+5554*)"; //stored on the stack
 	//char* input = "fdfdsfdgf"; //stored somewhere in memory , points to first character, can input++
 	//if dereferenced itll give the pointer of the first char, hence can increment
 	//only use for read-only
