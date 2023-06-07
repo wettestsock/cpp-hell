@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <crtdbg.h>
+#include <ctype.h>
 #define _CRTDBG_MAP_ALLOC
 
 typedef struct node {
@@ -68,21 +69,42 @@ void stack_print(node* top) {
 	return;
 }
 
+void output_print(node* top) {
+
+	node* c = top;
+	while (c != NULL) {
+		printf("%c", c->x);
+		c =c->prev;
+	}
+
+}
 
 
-void inToPost(char infix[]) {
+
+void inToPost(char* infix) {
 	if (infix == NULL)
 	{
 		return;
 	}
 
-	
+	char op[] = "-+/*^)(";
+
+	node* stack = NULL;
+	node* output = NULL;
+
+	for (int i = 0; i < strlen(infix) + 1; i++) {
+		push(&output, *(infix + i));
+
+	}
+	output_print(output);
 	//strcpy_s(infix, sizeof(infix), "\0");
 
 	
 	
 	
 	//strcat_s(infix, sizeof(infix), "fdg797");
+	free(stack);
+	free(output);
 	
 	return;
 }
@@ -97,8 +119,10 @@ int main(int argc, char* argv[]) {
 	pop(&top);
 	stack_print(top);
 
-	char input[] = "43+5554*";
-
+	char input[] = "43+5554*"; //stored on the stack
+	//char* input = "fdfdsfdgf"; //stored somewhere in memory , points to first character, can input++
+	//if dereferenced itll give the pointer of the first char, hence can increment
+	//only use for read-only
 	
 
 	inToPost(input);
@@ -107,7 +131,7 @@ int main(int argc, char* argv[]) {
 
 	
 
-	printf("%s", input);
+	//printf("%s", input);
 
 	wipe(&top);
 
