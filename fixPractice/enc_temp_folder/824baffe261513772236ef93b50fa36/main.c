@@ -95,7 +95,7 @@ void stack_print(node* top) {
 	return;
 }
 
-void output_print(node* top) {
+void out_print(node* top) {
 
 	if (top == NULL)
 	{
@@ -135,7 +135,7 @@ void inToPost(char infix[]) {
 
 
 	for(int i=0; i<strlen(infix); i++) {
-		output_print(out);
+		out_print(out);
 		
 		if (isalnum(infix[i]))
 		{
@@ -171,7 +171,7 @@ void inToPost(char infix[]) {
 		stack_print(stack);
 		
 	}
-	output_print(out);
+	out_print(out);
 	//strcpy_s(infix, sizeof(infix), "\0");
 	
 	//strcat_s(infix, sizeof(infix), "fdg797");
