@@ -27,14 +27,16 @@ void push(node** top, char input) {
 }
 
 
-void pop(node** top) {
-	if (*top == NULL)
+void pop(node** top, node** stack) {
+	if (*top == NULL || *stack == NULL)
 	{
 		return;
 	}
 
-	node* temp = *top;
-	*top = (*top)->prev; 
+	push(top, (*stack)->x);
+
+	node* temp = *stack;
+	*stack = (*stack)->prev;
 	free(temp);
 	return;
 }
@@ -55,6 +57,8 @@ void wipe(node** top) {
 	return;
 }
 
+
+
 void stack_print(node* top) {
 
 	printf("    The stack is: \n\t-------\n");
@@ -69,7 +73,7 @@ void stack_print(node* top) {
 	return;
 }
 
-void output_print(node* top) {
+void out_print(node* top) {
 
 	node* c = top;
 	while (c != NULL) {
@@ -79,55 +83,65 @@ void output_print(node* top) {
 
 }
 
-
-void sort(char c) {
-
+int priority(char x) {
+	switch (x) {
+		case '(':				return 0; break;
+		case '+': case '-':		return 1; break;
+		case '*': case '/':		return 2; break;
+		default:				return 3; break;
+	}
 
 }
 
 
+
 void inToPost(char* infix) {
-	if (infix == NULL)
-	{
-		return;
-	}
+		if (infix == NULL) {return;}
 
-	char op[] = "-+/*^)(";
-
-	node* stack = NULL;
-	node* output = NULL;
+	node* stack = NULL; node* out = NULL;
+	
 
 	for (int i = 0; i < strlen(infix) + 1; i++) {
-		switch (infix[i])
+		
+		if (isalnum(infix[i]))
 		{
-		case '(': push(&stack, infix[i]); break;
-		case ')': break;
+			push(&out, *(infix + i));
+			continue;
 
+		} else if (infix[i] == '(')
+		{
+			push(&stack, infix[i]);
+			continue;
+		}
+		else if (infix[i] == ')' && stack != NULL)
+		{
+			node* c = stack;
+			while (c->x != '(')
+			{
+				node* temp = c;
+				c = c->prev;
+				pop(&out, &temp);
 
-
-
-
-		default:
-			push(&output, *(infix + i));
-			break;
+				
+			}
+		}
+		else if (stack != NULL)
+		{
+			while (priority(stack->x) >= priority(infix[i]));
+			{
+				pop(&out, &stack);
+			}
+			push(&stack, infix[i]);
 		}
 
-
-
-		
-
-
-
+		stack_print(stack);
 	}
-	output_print(output);
+	out_print(out);
 	//strcpy_s(infix, sizeof(infix), "\0");
-
-	
-	
 	
 	//strcat_s(infix, sizeof(infix), "fdg797");
-	free(stack);
-	free(output);
+	wipe(&stack);
+	wipe(&out);
 	
 	return;
 }
@@ -139,10 +153,10 @@ int main(int argc, char* argv[]) {
 	push(&top, '2');
 	push(&top, '3');
 	push(&top, '4');
-	pop(&top);
+	//pop(&top);
 	stack_print(top);
 
-	char input[] = "(43+5554*)"; //stored on the stack
+	char input[] = "4+4*4+(3+5)"; //stored on the stack
 	//char* input = "fdfdsfdgf"; //stored somewhere in memory , points to first character, can input++
 	//if dereferenced itll give the pointer of the first char, hence can increment
 	//only use for read-only
