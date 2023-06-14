@@ -3,17 +3,19 @@
 
 #pragma once
 #include <iostream>
+#include <string>
 
-
-struct node;
 
 
 class practice {
 	std::string hi;		//private member variable 
 public: 
+	practice(); //another constructor
 	practice(std::string print);		//class methods name, not implementation
 	void print();
 };
+
+
 
 
 
