@@ -11,8 +11,22 @@
 
 
 int myAtoi(std::string s) {
-	return static_cast<int>(s[0]) - 48;
-};
+	int out = 0;
+	bool neg = false;
+	for (char& c : s) {
+		if (out > INT_MAX / 10) return INT_MAX;
+		if (-out < INT_MIN / 10) return INT_MIN;
+
+
+		if (c == 45) neg = true;
+		else if (c > 47 && c < 58) out = out * 10 + (c - 48);
+		else if (c != 32) break;
+		//division and modulus are compile operations, while the conditional is run-time 
+		//can treat char as a decimal int    
+	}
+	return neg ? -out : out;
+	//return (int)'-'-48;
+}
 
 int main()
 {
@@ -60,7 +74,7 @@ int main()
 	
 	
 
-	std::cout << myAtoi("3432");
+	std::cout << myAtoi("345");
 
 	std::cin.get();
 	return 0;
