@@ -10,12 +10,14 @@
 
 
 
-
+int myAtoi(std::string s) {
+	return static_cast<int>(s[0]) - 48;
+};
 
 int main()
 {
 	practice hi("fdhsfjd");
-	hi.print();
+;	hi.print();
 
 	std::cout << '\n';
 
@@ -27,12 +29,12 @@ int main()
 	std::forward_list<std::string>link;
 
 	link.push_front("fsdgffg");
-	link.push_front("fsdgffg");
-	link.push_front("thomas");
-	link.push_front("thomas");
-	link.push_front("thomas");
-	link.push_front("fsdgffg");
-
+;	link.push_front("fsdgffg");
+;	link.push_front("thomas");
+;	link.push_front("thomas");
+;	link.push_front("not thomas");
+;	link.push_front("fsdgffg");
+;
 
 	//std::forward_list<std::string>::iterator c;
 	//
@@ -42,11 +44,11 @@ int main()
 	//{
 	//	c++;
 	//}
-	link.remove("thomas");		//finds first instance of thomas
+	link.remove("thomas");	;	//finds all instance of thomas
 
 
 	//link.remove_if(i == "jennifer");
-	
+;	
 	std::forward_list<std::string>::iterator c;
 	c = link.begin();
 	
@@ -54,9 +56,11 @@ int main()
 	{
 		std::cout << *c << '\t';
 		c++;
-	}
+	};
+	
 	
 
+	std::cout << myAtoi("3432");
 
 	std::cin.get();
 	return 0;
