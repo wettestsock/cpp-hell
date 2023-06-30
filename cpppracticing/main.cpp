@@ -28,6 +28,22 @@ int myAtoi(std::string s) {
 	//return (int)'-'-48;
 }
 
+
+//GENERIC FUNCTIONS AND TEMPLATES
+//generic function : use same code but w different data types as parameters
+//function overloading is ass !!! esp for all datatypes
+
+//generic function : 
+template<typename t> //typename is a generic data type named t
+void swap(t& a, t& b) {
+	t temp = a;
+	a = b;
+	b = temp;
+	
+}
+
+
+
 int main()
 {
 	practice hi("fdhsfjd");
@@ -72,7 +88,12 @@ int main()
 		c++;
 	};
 	
+	std::string a = "hiii";
+	std::string b = "byee";
+	swap(a, b); //explicity specifies
+	std::cout << "\nswapped " << b << " with " << a << "\n the new values are: " << a << " and " << b << '\n';
 	
+
 
 	std::cout << myAtoi("345");
 
