@@ -13,7 +13,7 @@ friends::friends(const std::vector<std::string> FInput) {
 
 };
 
-std::ostream& operator<< (std::ostream& out, const friends f) {
+std::ostream& operator<<(std::ostream& out, const friends& f) {
 	
 	return out;
 }

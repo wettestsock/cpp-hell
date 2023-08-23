@@ -6,13 +6,15 @@
 #include <string>
 
 
+
+
 class friends {
 private:
 	std::vector<std::string> FList;
 public:
 	friends();
 	friends(const std::vector<std::string> FInput);
-
+	
 	
 };
 
