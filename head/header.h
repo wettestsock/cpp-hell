@@ -4,6 +4,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <time.h>
 
 
 
@@ -20,3 +21,5 @@ public:
 
 std::ostream& operator<<(std::ostream& out, const friends& f);
 
+int oldRand(const int& max);
+int oldRandRange(const int& min, const int& max);
