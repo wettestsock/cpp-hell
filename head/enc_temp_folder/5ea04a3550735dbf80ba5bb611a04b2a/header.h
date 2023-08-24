@@ -36,7 +36,7 @@ template<typename T> T maxVal(T x, T y) {
 //template can act as a placeholder, or a template
 //create a c-style array on the stack instead of compile time
 
-template<typename T, int N> //can declare multiple placeholders, can be placeholders for anything
+template<typename T, int N> //can declare multiple placeholder
 class array {
 private: 
 	T m_Array[N];

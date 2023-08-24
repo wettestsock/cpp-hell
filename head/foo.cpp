@@ -5,6 +5,7 @@
 
 #include "header.h"
 
+
 friends::friends() {
 	FList = { "You have no friends." };
 };
@@ -24,3 +25,9 @@ int oldRandRange(const int& min, const int& max) {
 	return rand() % (max - min + 1) + min; //removes the max sway then adds it back 
 	//gives a # in a range
 }
+
+
+
+
+//VARIADIC ARGS AND VARIADIC FUNCTION TEMPLATES
+//-------
