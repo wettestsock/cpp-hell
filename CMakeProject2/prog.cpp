@@ -44,7 +44,7 @@ int main()
 
 	double a = 1.0 / 3;
 	//std::cout << a;
-	double b = 1/3.0;!
+	double b = 1/3.0;
 
 	if (dCompare(a, b))
 	{
