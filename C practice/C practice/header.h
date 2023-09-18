@@ -1,4 +1,4 @@
-#pragma once
+
 
 #include <string.h>				//string functions
 
@@ -26,3 +26,4 @@ void superBirthday(char name[]);
 int multiply(int x, int y);
 void bubbleSort(double array[], int size);
 void printArr(double array[], int size);
+char *dynamicStr();

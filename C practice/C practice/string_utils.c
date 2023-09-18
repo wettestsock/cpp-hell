@@ -6,6 +6,7 @@
 #include <string.h>				//string functions
 #include <stdlib.h> 
 #include <time.h>
+#include "header.h"
 
 
 
@@ -67,3 +68,21 @@ void printArr(double array[], int size) {
 }
 
 //--------
+
+char* dynamicStr() {
+	char *str = (char*)malloc(1*sizeof(char));
+	char c;
+	int i = 0;
+
+	while (c=getc(stdin), c!='\n')
+	{
+		str[i] = c;
+		i++;
+		str = realloc(str, i*sizeof(char));
+	}
+	str[i] = '\0';
+
+	return str;
+
+	
+};
