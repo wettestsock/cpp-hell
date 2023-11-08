@@ -22,6 +22,9 @@ hash tables: try to find element in O(1) time complexity
 basically array table with hash function
 
 each element has index
+
+note: works better with linked lists
+where every element in hash table becomes the head of a linked list
 */
 
 typedef struct {
