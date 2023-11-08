@@ -55,38 +55,55 @@ int hash( char* name) {
 //ARRAY OF POINTERS
 void print_table(person* hash_tb[]) { 
     
+    printf("index\tname\tage\n");
     for(int i=0; i< TABLE_SIZE; i++){
         printf("%i\t", i);
         if(!hash_tb[i]) {
-            printf("---\t---\t---\t\n");
+            printf("---\t---\n");
             continue;
-        }
-
-        printf("%s\t%i\t%i\n", hash_tb[i]->name, hash_tb[i]->age, hash(hash_tb[i]->name));
+        } else printf("%s\t%i\n", hash_tb[i]->name, hash_tb[i]->age);
     
     }
 }
+
 
 //pointer to the array of pointers (to modify)
 void insert(person* (*hash_tb)[], char *name_in, const int age_in){
     int index = hash(name_in);
     
-    //exception handling
-    if((*hash_tb)[index]) {
-        //if the hash in the index is already not null
-        printf("NO DUPLICATES ALLOWED\n");
-        return;
-    }
     //allocates new memory for the new person
     person* new = malloc(sizeof(person));
     strcpy(new->name, name_in);
     new->age = age_in;
+    
 
-    (*hash_tb)[index] = new;
+    //LINEAR PROBING
+    for(int i=index; i<TABLE_SIZE; i++){
+        if((*hash_tb)[i]==NULL) {
+            (*hash_tb)[i] = new;
+            return;
+        }
+    }
+    for(int i =0; i<index; i++){
+        if((*hash_tb)[i]==NULL) {
+            (*hash_tb)[i] = new;
+            return; 
+        }
+    }
+    
+    printf("HASHMAP IS FULL\n");
+    
 }
 
 void clear_hash(person* (*hash_tb)[]){
-    for(int i=0; i<TABLE_SIZE; i++) free((*hash_tb)[i]);
+    for(int i=0; i<TABLE_SIZE; i++) {
+        //NOTE: free frees the memory block (free)
+        // the pointer to that memory block then needs to be set to null (assigning null)
+        
+
+        free((*hash_tb)[i]);
+        (*hash_tb)[i] = NULL;
+    }
 }
 
 person* find(person* hash_tb[], char* name){
@@ -94,6 +111,11 @@ person* find(person* hash_tb[], char* name){
     if (hash_tb != NULL && !strcmp(hash_tb[index]->name,name)) return hash_tb[index];
     return NULL;
 };
+
+void remove_hash(person* (*hash_tb)[], char* name) {
+    free((*hash_tb)[hash(name)]);
+    (*hash_tb)[hash(name)] = NULL;
+}
 
 int main(){
     srand(time(0));
@@ -105,10 +127,9 @@ int main(){
     insert(&ht1, "dskjfns", 44);
     insert(&ht1, "dkd", 44);
     insert(&ht1, "kjj", 44);
-    insert(&ht1, "thoma", 44);
-    insert(&ht1, "thoma", 44);
-
-
+    insert(&ht1, "dsff", 44);
+    insert(&ht1, "1111", 44);
+    insert(&ht1, "1111", 44);
     print_table(ht1);
 
     person* found = find(ht1, "thoma");
