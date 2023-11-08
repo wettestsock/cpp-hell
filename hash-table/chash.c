@@ -38,19 +38,22 @@ void init_hash(person* (*hash_tb)[]) { //initializes and sets all values to null
 }
 
 
-int hash(char* name) {
+int hash( char* name) {
     int hash_val =0;
-    for (int i=0; i<strlen(name); i++){
-        hash_val += (int)name[i];
-        hash_val %= 10;
-    }
+    while(*name){ //iterates over each char
+        hash_val += *name; //pseudorandom key generation
+        hash_val = (hash_val * (*name)) % TABLE_SIZE;
+        //note: same string will give same key
+        *name++;
+    } 
+
     return hash_val;
 
 }   
 
 //passes by value 
 //ARRAY OF POINTERS
-void print_table(person* hash_tb[TABLE_SIZE]) { 
+void print_table(person* hash_tb[]) { 
     
     for(int i=0; i< TABLE_SIZE; i++){
         printf("%i\t", i);
@@ -67,10 +70,13 @@ void print_table(person* hash_tb[TABLE_SIZE]) {
 //pointer to the array of pointers (to modify)
 void insert(person* (*hash_tb)[], char *name_in, const int age_in){
     int index = hash(name_in);
-    //if the hash table is uninitialized or the hash table already has name input in its index
-    //returns false
+    
     //exception handling
-
+    if((*hash_tb)[index]) {
+        //if the hash in the index is already not null
+        printf("NO DUPLICATES ALLOWED\n");
+        return;
+    }
     //allocates new memory for the new person
     person* new = malloc(sizeof(person));
     strcpy(new->name, name_in);
@@ -83,6 +89,12 @@ void clear_hash(person* (*hash_tb)[]){
     for(int i=0; i<TABLE_SIZE; i++) free((*hash_tb)[i]);
 }
 
+person* find(person* hash_tb[], char* name){
+    int index = hash(name);
+    if (hash_tb != NULL && !strcmp(hash_tb[index]->name,name)) return hash_tb[index];
+    return NULL;
+};
+
 int main(){
     srand(time(0));
 
@@ -90,24 +102,19 @@ int main(){
     //to easy to tell when spot in table is empty
     init_hash(&ht1);
 
-    
-    person* new = malloc(sizeof(person));
-    strcpy(new->name, "thomas");
-    new->age = 33;
-
-    ht1[hash(new->name)] = new;
-
     insert(&ht1, "dskjfns", 44);
     insert(&ht1, "dkd", 44);
+    insert(&ht1, "kjj", 44);
+    insert(&ht1, "thoma", 44);
     insert(&ht1, "thoma", 44);
 
 
     print_table(ht1);
 
-    printf("Jacob => %u\n", hash("Jacob"));
-    printf("Thomsa => %u\n", hash("Thoma"));
-    printf("Joe => %u\n", hash("fdkjs"));
-    printf("Jacob => %u\n", hash("fdkj"));
+    person* found = find(ht1, "thoma");
+    if(found)printf("person has been found\n");
+
+    clear_hash(&ht1);
 
     return 0;
 }
