@@ -7,11 +7,12 @@
 
 int main(int argc, char *argv[]) {
 	printf("fdjvklhjgfklhjk %i fgdfg\n", multiply(2, 5));
-
+	int i;
 
 	char *str = dynamicStr();
 	printf("The dynamically allocated string literla youve just input is : %s\n",str);
 	free(str);
+	
 
 	char *string = "swag in south campton";
 	/*
